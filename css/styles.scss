@@ -1,0 +1,21 @@
+#newTodo {
+    display: flex;
+    #newTodoText {
+        margin-right: 10px;
+    }
+}
+
+#todoList {
+    width: 100%;
+    margin-top: 20px;
+}
+.todo {
+    display: flex;
+    justify-content: space-between;
+    background-color: #fcffe7;
+    margin-bottom: 15px;
+
+    .todoText {
+        width: max-content;
+    }
+}

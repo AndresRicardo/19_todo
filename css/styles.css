@@ -1,0 +1,32 @@
+#newTodo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#newTodo #newTodoText {
+  margin-right: 10px;
+}
+
+#todoList {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.todo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  background-color: #fcffe7;
+  margin-bottom: 15px;
+}
+
+.todo .todoText {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+}
+/*# sourceMappingURL=styles.css.map */
