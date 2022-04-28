@@ -21,14 +21,29 @@ function agregarNewTodo() {
 }
 
 function borrarTodos() {
-    //se puede mejorar reemplazando el todoList por un fragment vacio de esta manera se evita el reflow a cada iteración
+    //se puede mejorar reemplazando el todoList completo por un fragment vacio de esta manera se evita el reflow a cada iteración
     while (todoList.firstChild) {
         todoList.removeChild(todoList.firstChild);
     }
 }
 
+function listenerEliminarPaTodos() {
+    if (localStorage.length <= 0) return;
+
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        let Eliminarbutton = document.querySelector(`#tid${key} button`);
+
+        Eliminarbutton.addEventListener("click", (e) => {
+            e.preventDefault();
+            console.log(`eliminar todo id ${key}`);
+            Eliminarbutton.parentElement.remove();
+            localStorage.removeItem(key);
+        });
+    }
+}
+
 function pintarTodos() {
-    borrarTodos();
     //leer todos los todos del local storage
     const fragment = document.createDocumentFragment();
     if (localStorage.length <= 0) return;
@@ -39,6 +54,7 @@ function pintarTodos() {
         let key = localStorage.key(i);
         const item = JSON.parse(localStorage.getItem(key));
         const itemMessage = item.message;
+        clone.querySelector(".todo").setAttribute("id", `tid${item.tid}`);
         clone.querySelector(".todoText").textContent = itemMessage;
 
         fragment.appendChild(clone.querySelector(".todo"));
@@ -55,7 +71,12 @@ newTodoButton.addEventListener("click", (e) => {
     }
 
     agregarNewTodo();
+    borrarTodos();
     pintarTodos();
+    listenerEliminarPaTodos();
+
     newTodoText.textContent = "";
     newTodoText.value = "";
 });
+
+pintarTodos();
